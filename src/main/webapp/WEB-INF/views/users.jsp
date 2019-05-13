@@ -8,12 +8,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Users</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/litera/bootstrap.min.css"/>
+<link rel="stylesheet" href="/style.css" />
 </head>
 <body>
 
-	<h1>Users Galore</h1>
+<div class="container">
 
-	<table>
+	<a href="/">Home</a>
+
+	<h1 class="display-2">Users Galore</h1>
+
+	<table class="table">
 		<tr>
 			<th>Name</th>
 			<th>Edit</th>
@@ -21,18 +27,13 @@
 		</tr>
 
 		<c:forEach var="p" items="${list}">
-
-		<tr>
-		<td>${p.name}</td>
-		</tr>
-
-
+			<tr>
+				<td>${p.username}</td>
+			</tr>
 		</c:forEach>
 
 	</table>
-	
-	<a href="/">Home</a>
-
+</div>
 
 </body>
 </html>

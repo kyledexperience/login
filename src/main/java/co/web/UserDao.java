@@ -19,4 +19,16 @@ public class UserDao {
 		return em.createQuery("FROM User", User.class).getResultList();
 	}
 
+	public void create(User user) {
+		em.persist(user);
+	}
+
+	public void update(User user) {
+		em.merge(user);
+	}
+
+	public void delete(Long id) {
+		em.remove(em.getReference(User.class, id));
+	}
+
 }

@@ -14,8 +14,26 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	private String name;
+	private String username;
 	private String password;
+	private String firstName;
+	private String lastName;
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
 	public Long getId() {
 		return id;
@@ -25,27 +43,28 @@ public class User {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getUsername() {
+		return username;
 	}
 
 	public String getPassword() {
 		return password;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
-	public User(Long id, String name, String password) {
+	public User(String username, String password, String firstName, String lastName) {
 		super();
-		this.id = id;
-		this.name = name;
+		this.username = username;
 		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
 	}
 
 	public User() {
@@ -54,7 +73,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [name=" + name + ", password=" + password + "]";
+		return "User [username=" + username + ", password=" + password + ",first=" + firstName + "]";
 	}
 
 }

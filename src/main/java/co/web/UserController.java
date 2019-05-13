@@ -27,12 +27,24 @@ public class UserController {
 	}
 
 	@RequestMapping("/landing")
-	public ModelAndView landing(@RequestParam("name") String name) {
+	public ModelAndView landing(@RequestParam("username") String username) {
 
 		ModelAndView mav = new ModelAndView("landing");
-		mav.addObject("name", name);
+		mav.addObject("name", username);
 
 		return mav;
+	}
+
+	@RequestMapping("/create")
+	public ModelAndView newUser(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName,
+			@RequestParam("username") String username, @RequestParam("password") String password) {
+
+		ModelAndView mav = new ModelAndView("redirect:/");
+		User user = new User(username, password, firstName, lastName);
+		dao.create(user);
+
+		return mav;
+
 	}
 
 }
