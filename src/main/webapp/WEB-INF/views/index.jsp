@@ -13,9 +13,9 @@
 <div>
 
 	<h3>Returning Users</h3>
-	<form method="post">
+	<form action="/landing">
 	
-	<input type="text" placeholder="Username"/>
+	<input type="text" name="name" placeholder="Username"/>
 	<input type="text" placeholder="Password"/>
 	
 	<button type="submit">Login</button>
