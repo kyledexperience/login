@@ -12,13 +12,16 @@
 <body>
 <div>
 
-	<h1>Users Galore</h1>
+	<h3>Returning Users</h3>
+	<form method="post">
 	
-	<c:forEach var="p" items="${list}">
+	<input type="text" placeholder="Username"/>
+	<input type="text" placeholder="Password"/>
 	
-	<p>${p}</p>
+	<button type="submit">Login</button>
+	</form>
 	
-	</c:forEach>
+	<a href="/users">View Users</a>
 
 
 </div>

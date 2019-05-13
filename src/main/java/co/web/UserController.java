@@ -14,7 +14,13 @@ public class UserController {
 	@RequestMapping("/")
 	public ModelAndView home() {
 
-		ModelAndView mav = new ModelAndView("index");
+		return new ModelAndView("index");
+	}
+
+	@RequestMapping("/users")
+	public ModelAndView userTable() {
+
+		ModelAndView mav = new ModelAndView("users");
 		mav.addObject("list", dao.findAll());
 		return mav;
 	}
