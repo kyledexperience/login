@@ -24,7 +24,8 @@
 		</form>
 
 	</div>
-	<div class="container">
+	
+	<div class="below">
 		<h3 class="display-3">New User</h3>
 		<form action="/create">
 

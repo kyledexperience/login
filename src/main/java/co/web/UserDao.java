@@ -19,6 +19,10 @@ public class UserDao {
 		return em.createQuery("FROM User", User.class).getResultList();
 	}
 
+	public User findById(Long id) {
+		return em.find(User.class, id);
+	}
+
 	public void create(User user) {
 		em.persist(user);
 	}

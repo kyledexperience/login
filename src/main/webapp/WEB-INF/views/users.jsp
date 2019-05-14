@@ -22,13 +22,20 @@
 	<table class="table">
 		<tr>
 			<th>Name</th>
-			<th>Edit</th>
-			<th>Delete</th>
+			<th></th>
+			<th></th>
 		</tr>
 
 		<c:forEach var="p" items="${list}">
 			<tr>
 				<td>${p.username}</td>
+				<td>
+				<a href="/edit/${p.id}">Edit</a>
+				</td>
+				<td>
+				<a href="/delete/${p.id}">Delete</a>
+				</td>
+				
 			</tr>
 		</c:forEach>
 
