@@ -3,6 +3,7 @@ package co.web;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
@@ -33,6 +34,17 @@ public class UserDao {
 
 	public void delete(Long id) {
 		em.remove(em.getReference(User.class, id));
+	}
+
+	public User findByUsername(String username) {
+		try {
+
+			return em.createQuery("FROM User WHERE username = :username", User.class).setParameter("username", username)
+					.getSingleResult();
+		} catch (NoResultException ex) {
+			return null;
+		}
+
 	}
 
 }

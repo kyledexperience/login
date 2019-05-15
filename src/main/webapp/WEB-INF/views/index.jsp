@@ -15,12 +15,12 @@
 	<div class="container">
 
 		<h3 class="display-3">Returning Users</h3>
-		<form action="/landing">
+		<form action="/landing" method="post">
 
 			<input type="text" name="username" placeholder="Username" /> <input
 				type="text" placeholder="Password" />
 
-			<button class="btn btn-light" type="submit">Login</button>
+			<button class="btn btn-light">Login</button>
 		</form>
 
 	</div>

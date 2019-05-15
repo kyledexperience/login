@@ -1,11 +1,15 @@
 package co.web;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class UserController {
@@ -19,6 +23,24 @@ public class UserController {
 		return new ModelAndView("index");
 	}
 
+	@PostMapping("/")
+	public ModelAndView submit(@RequestParam("username") String username, @RequestParam("password") String password,
+			HttpSession session, RedirectAttributes redir) {
+		User user = dao.findByUsername(username);
+
+		if (user == null || !password.equals(user.getPassword())) {
+			ModelAndView mav = new ModelAndView("/");
+			mav.addObject("message", "Incorrect username or password");
+			return mav;
+		}
+
+		session.setAttribute("user", user);
+
+		redir.addFlashAttribute("message", "Logged in.");
+		return new ModelAndView("redirect:/landing");
+
+	}
+
 	@RequestMapping("/users")
 	public ModelAndView userTable() {
 
@@ -28,21 +50,22 @@ public class UserController {
 	}
 
 	@RequestMapping("/landing")
-	public ModelAndView landing(@RequestParam("username") String username) {
+	public ModelAndView landing(HttpSession session) {
 
 		ModelAndView mav = new ModelAndView("landing");
-		mav.addObject("name", username);
 
 		return mav;
 	}
 
 	@RequestMapping("/create")
 	public ModelAndView newUser(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName,
-			@RequestParam("username") String username, @RequestParam("password") String password) {
+			@RequestParam("username") String username, @RequestParam("password") String password, HttpSession session) {
 
 		ModelAndView mav = new ModelAndView("redirect:/");
 		User user = new User(username, password, firstName, lastName);
 		dao.create(user);
+
+		session.setAttribute("user", user);
 
 		return mav;
 
